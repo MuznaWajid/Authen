@@ -1,34 +1,28 @@
 import React , {Component} from 'react';
-import "./App.css";
-import {Button,Form,FormGroup,Label,Input} from 'reactstrap';
 
-import { FacebookLoginButton } from 'react-social-login-buttons';
+
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+ 
+import Home from './components/Home';
+import login from './components/login';
+import signup from './components/signup';
+ import Error from './components/Error';
+import Navigation from './components/Navigation';
+
 class  App extends Component{
     render(){
         return(
-           
-            <Form className="LoginAppForm">
-            <div className="LoginApp">
-            <h1 > <span className="font-weight-bold text-primary">Technovies</span>.com</h1>
-            <h2 className="text-info ">Welcome To Technovies Family :) </h2>
-            <FormGroup>
-            <Label>Email :</Label>
-            <Input type="email" placeholder="Enter Yor Email"> </Input>
-             <Label>Password :</Label>
-            <Input type="pass" placeholder="Enter Yor Password"></Input>
-            <br/>
-            <Button className="btn-block btn-dark btn-lg">Log-In</Button>
-            <br/>
-           <div className="text-center pt-3">Or Continue with Your Social Account</div>
-            <FacebookLoginButton className ="mt-3 mb-3"></FacebookLoginButton>
-            <div className="text-center">
-            <a href="/sign-up">Sign-Up</a>
-            <span className="p-2">|</span>
-            <a href="/Forgot Password">Forgot Password</a></div>
-            
-            </FormGroup></div>
-            </Form>
-               );
-}
+            <BrowserRouter>  
+        <div>
+        <Navigation/>
+            <Switch>
+            <Route path="/" component={Home} exact/>
+             <Route path="/login" component={login}/>
+             <Route path="/signup" component={signup}/>
+            <Route component={Error}/>
+           </Switch>
+        </div> 
+      </BrowserRouter>
+        );}
 }
 export default App;
